@@ -1,14 +1,11 @@
 package kerstein.physics;
 
-import kerstein.homework2.InvalidDataException;
-
 public class QuadraticEquation {
 	private double a;
 	private double b;
 	private double c;
 
-	public QuadraticEquation(double a, double b, double c)
-			throws InvalidDataException {
+	public QuadraticEquation(double a, double b, double c) throws InvalidDataException {
 		if (a == 0 || b == 0 || c == 0)
 			throw new InvalidDataException();
 		this.a = a;

@@ -1,7 +1,5 @@
 package kerstein.physics;
 
-import kerstein.homework2.InvalidDataException;
-
 import org.junit.Assert;
 import org.junit.Test;
 
