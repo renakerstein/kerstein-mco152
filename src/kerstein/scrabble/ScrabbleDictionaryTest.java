@@ -17,4 +17,9 @@ public class ScrabbleDictionaryTest {
 		Assert.assertEquals(false, sd.contains("xxxxx"));
 	}
 
+	@Test
+	public void testContains3() {
+		ScrabbleDictionary sd = new ScrabbleDictionary();
+		Assert.assertEquals(true, sd.contains("AGGRESSORS"));
+	}
 }

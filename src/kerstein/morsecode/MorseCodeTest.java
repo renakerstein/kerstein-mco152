@@ -8,9 +8,8 @@ public class MorseCodeTest {
 	@Test
 	public void testEncode() {
 		MorseCode mc = new MorseCode();
-
 		Assert.assertEquals(".... . .-.. .-.. ---   .-. . -. .-",
-				mc.encode("hello rena"));
+				mc.encode("HELLO RENA"));
 	}
 
 	@Test

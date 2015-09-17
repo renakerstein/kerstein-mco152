@@ -24,7 +24,7 @@ public class ScrabbleDictionary {
 			}
 			file.close();
 
-			if (dictionary.contains(word)) {
+			if (dictionary.contains(word.toLowerCase())) {
 				return true;
 			}
 
