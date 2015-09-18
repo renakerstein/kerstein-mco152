@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class ScrabbleDictionary {
-	ArrayList<String> dictionary;
+	HashSet<String> dictionary;
 
 	public ScrabbleDictionary() {
-		dictionary = new ArrayList<String>();
+		dictionary = new HashSet<String>();
 		try {
 			Scanner file = new Scanner(new File("US.dic"));
 
