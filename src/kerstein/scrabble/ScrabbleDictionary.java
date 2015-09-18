@@ -3,6 +3,7 @@ package kerstein.scrabble;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class ScrabbleDictionary {
@@ -10,12 +11,6 @@ public class ScrabbleDictionary {
 
 	public ScrabbleDictionary() {
 		dictionary = new ArrayList<String>();
-	}
-
-	/**
-	 * @return true if the dictionary contains the word, otherwise false.
-	 */
-	public boolean contains(String word) {
 		try {
 			Scanner file = new Scanner(new File("US.dic"));
 
@@ -23,16 +18,17 @@ public class ScrabbleDictionary {
 				dictionary.add(file.nextLine());
 			}
 			file.close();
-
-			if (dictionary.contains(word.toLowerCase())) {
-				return true;
-			}
-
 		} catch (FileNotFoundException ex) {
 
 		}
-
-		return false;
 	}
 
+	/**
+	 * @return true if the dictionary contains the word, otherwise false.
+	 */
+	public boolean contains(String word) {
+
+		return dictionary.contains(word.toLowerCase());
+
+	}
 }

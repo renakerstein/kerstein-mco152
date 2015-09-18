@@ -1,7 +1,5 @@
 package kerstein.morsecode;
 
-import java.util.ArrayList;
-
 public class MorseCode {
 	String[] abc = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
 			"l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
@@ -19,41 +17,41 @@ public class MorseCode {
 
 	public String encode(String message) {
 		String[] words = message.split(" ");
-		String encodedMessage = "";
+		StringBuilder builder =new StringBuilder();
 		for (int i = 0; i < words.length; i++) {
 			for (int j = 0; j < words[i].length(); j++) {
 				char letter = words[i].charAt(j);
 				for (int k = 0; k < abc.length; k++) {
 					if (abc[k].equalsIgnoreCase(Character.toString(letter))) {
-						encodedMessage += morseCodes[k] + " ";
+						builder.append(morseCodes[k] + " ");
 						break;
 					}
 				}
 			}
 
 			// add in a space between each word
-			encodedMessage += " " + " ";
+			builder.append( " " + " ");
 		}
-		return encodedMessage.trim(); // trim the extra space at the end
+		return builder.toString().trim(); // trim the extra space at the end
 	}
 
 	public String decode(String code) {
 		String[] codes = code.split("   ");
-		String decodedMessage = "";
+		StringBuilder builder =new StringBuilder();
 		for (int i = 0; i < codes.length; i++) {
 			String[] eachCode = codes[i].split(" ");
 			for (int j = 0; j < eachCode.length; j++) {
 				for (int k = 0; k < morseCodes.length; k++) {
 					if (morseCodes[k].equals(eachCode[j])) {
-						decodedMessage += abc[k];
+						builder.append( abc[k]);
 						break;
 					}
 				}
 			}
 
 			// add in a space between each word/code
-			decodedMessage += " ";
+			builder.append( " ");
 		}
-		return decodedMessage.trim(); // trim the extra space at the end
+		return builder.toString().trim(); // trim the extra space at the end
 	}
 }

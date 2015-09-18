@@ -8,18 +8,18 @@ public class ScrabbleDictionaryTest {
 	@Test
 	public void testContains() {
 		ScrabbleDictionary sd = new ScrabbleDictionary();
-		Assert.assertEquals(true, sd.contains("aggressors"));
+		Assert.assertTrue(sd.contains("aggressors"));
 	}
 
 	@Test
 	public void testContains2() {
 		ScrabbleDictionary sd = new ScrabbleDictionary();
-		Assert.assertEquals(false, sd.contains("xxxxx"));
+		Assert.assertFalse(sd.contains("xxxxx"));
 	}
 
 	@Test
 	public void testContains3() {
 		ScrabbleDictionary sd = new ScrabbleDictionary();
-		Assert.assertEquals(true, sd.contains("AGGRESSORS"));
+		Assert.assertTrue(sd.contains("AGGRESSORS"));
 	}
 }
