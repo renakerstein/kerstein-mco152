@@ -25,4 +25,37 @@ public class PythagoreanTheoremTest {
 		theorem.setBC(16.0, 22.0);
 		Assert.assertEquals(15.09, theorem.getA(), 0.1);
 	}
+
+	@Test
+	public void testABThrowsInvalidDataException() {
+		try {
+			PythagoreanTheorem theorem = new PythagoreanTheorem();
+			theorem.setAB(0, 0);
+			Assert.fail("Exception has not been thrown");
+		} catch (InvalidDataException e) {
+
+		}
+	}
+
+	@Test
+	public void testACThrowsInvalidDataException() {
+		try {
+			PythagoreanTheorem theorem = new PythagoreanTheorem();
+			theorem.setAC(0, 0);
+			Assert.fail("Exception has not been thrown");
+		} catch (InvalidDataException e) {
+
+		}
+	}
+
+	@Test
+	public void testBCThrowsInvalidDataException() {
+		try {
+			PythagoreanTheorem theorem = new PythagoreanTheorem();
+			theorem.setBC(0, 0);
+			Assert.fail("Exception has not been thrown");
+		} catch (InvalidDataException e) {
+
+		}
+	}
 }

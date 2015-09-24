@@ -49,8 +49,7 @@ public class MostAnagrams {
 			}
 		}
 
-		// find the group with the largest value-get the key at that location on
-		// the map
+		// find the group with the largest value
 		int largestValue = 0;
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
 

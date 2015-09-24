@@ -17,4 +17,13 @@ public class QuadraticEquationTest {
 		Assert.assertEquals(-3.5, equation.getNegativeX(), 0.1);
 	}
 
+	@Test
+	public void testThrowsInvalidDataException() throws InvalidDataException {
+		try {
+			new QuadraticEquation(0, 0, 0);
+			Assert.fail("Exception has not been thrown");
+		} catch (InvalidDataException e) {
+
+		}
+	}
 }

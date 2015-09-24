@@ -1,21 +1,22 @@
 package kerstein.scrabble;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class ScrabbleDictionary {
 	HashSet<String> dictionary;
 
-	public ScrabbleDictionary() {
+	public ScrabbleDictionary() throws IOException {
 		dictionary = new HashSet<String>();
 		try {
-			Scanner file = new Scanner(new File("US.dic"));
+			BufferedReader file = new BufferedReader(new FileReader("./US.dic"));
 
-			while (file.hasNext()) {
-				dictionary.add(file.nextLine());
+			String line;
+			while ((line = file.readLine()) != null) {
+				dictionary.add(line);
 			}
 			file.close();
 		} catch (FileNotFoundException ex) {

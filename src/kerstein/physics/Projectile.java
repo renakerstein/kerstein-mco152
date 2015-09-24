@@ -20,7 +20,8 @@ public class Projectile {
 	}
 
 	public Double getAnswerY() {
-		return (Math.cos(radians) * velocity * seconds - (.5 * 9.8 * Math.pow(seconds, 2)));
+		return Math.cos(radians) * velocity * seconds - .5 * 9.8
+				* (seconds * seconds);
 	}
 
 	public void setSeconds(double seconds) {
