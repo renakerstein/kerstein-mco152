@@ -25,4 +25,5 @@ public class Projectile {
 	public void setSeconds(double seconds) {
 		this.seconds = seconds;
 	}
+
 }
