@@ -9,7 +9,16 @@ import java.util.HashSet;
 public class ScrabbleDictionary {
 	HashSet<String> dictionary;
 
-	public ScrabbleDictionary() throws IOException {
+	private static ScrabbleDictionary singleton;
+
+	public static ScrabbleDictionary getInstance() throws IOException {
+		if (singleton == null) {
+			singleton = new ScrabbleDictionary();
+		}
+		return singleton;
+	}
+
+	private ScrabbleDictionary() throws IOException {
 		dictionary = new HashSet<String>();
 		try {
 			BufferedReader file = new BufferedReader(new FileReader("./US.dic"));

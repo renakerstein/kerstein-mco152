@@ -20,6 +20,6 @@ public class SmileJFrame extends JFrame {
 		Container container = getContentPane();
 
 		container.setLayout(layout);
-		container.add(new SmileComponent(), BorderLayout.CENTER);
+		container.add(new SmileComponent(), BorderLayout.CENTER); // POLYMORPHISM!!
 	}
 }

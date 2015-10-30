@@ -1,25 +1,33 @@
 package kerstein.anagrams;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class MostAnagrams {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+
+		// best way to do it-hash map with array that holds each sorted word,
+		// and an arraylist that
+		// holds the words that have the same sort. then check which array list
+		// has the largest size
+		// and print that out
 
 		// read dictionary file into hash set
 		ArrayList<String> dictionary = new ArrayList<String>();
 		try {
-			Scanner file = new Scanner(new File("US.dic"));
+			BufferedReader file = new BufferedReader(new FileReader("./US.dic"));
 
-			while (file.hasNext()) {
-				dictionary.add(file.nextLine());
+			String line;
+			while ((line = file.readLine()) != null) {
+				dictionary.add(line);
 			}
 			file.close();
 		} catch (FileNotFoundException ex) {

@@ -9,20 +9,20 @@ public class ScrabbleDictionaryTest {
 
 	@Test
 	public void testContains() throws IOException {
-		ScrabbleDictionary sd = new ScrabbleDictionary();
+		ScrabbleDictionary sd = ScrabbleDictionary.getInstance();
 		Assert.assertTrue(sd
 				.contains("pneumonoultramicroscopicsilicovolcanoconiosis"));
 	}
 
 	@Test
 	public void testContains2() throws IOException {
-		ScrabbleDictionary sd = new ScrabbleDictionary();
+		ScrabbleDictionary sd = ScrabbleDictionary.getInstance();
 		Assert.assertFalse(sd.contains("xxxxx"));
 	}
 
 	@Test
 	public void testContains3() throws IOException {
-		ScrabbleDictionary sd = new ScrabbleDictionary();
+		ScrabbleDictionary sd = ScrabbleDictionary.getInstance();
 		Assert.assertTrue(sd.contains("DISINTEGRATIONS"));
 	}
 
