@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class UPSDatabaseTest {
-	Package pkg = new Package("#12345");
 
 	@Test
 	/** 
