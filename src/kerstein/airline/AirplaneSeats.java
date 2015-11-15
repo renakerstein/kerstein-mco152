@@ -145,9 +145,12 @@ public class AirplaneSeats {
 	 * @return an ArrayList of seatNames of the seats that have been reserved.
 	 * @throws NotEnoughSeatsException
 	 *             if there are not enough seats together to reserve.
+	 * @throws SeatOutOfBoundsException
+	 * @throws AlreadyReservedException
 	 */
 	public ArrayList<String> reserveGroup(int numberOfSeatsTogether)
-			throws NotEnoughSeatsException {
+			throws NotEnoughSeatsException, AlreadyReservedException,
+			SeatOutOfBoundsException {
 		ArrayList<String> group = new ArrayList<String>();
 		char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 		StringBuilder builder = new StringBuilder();
@@ -163,8 +166,13 @@ public class AirplaneSeats {
 				} else if (map.get(builder.toString()) == true) {
 					break;
 				}
-			}
-			if (count == 4) {
+			}// closes inner for loop
+			if (count == numberOfSeatsTogether) {
+
+				for (String seat : group) {
+					reserve(seat);
+
+				}
 				return group;
 			}
 

@@ -22,7 +22,7 @@ public class AirplaneSeatsTest {
 	 * Test the output of toString() on an full plane. Do not modify this method.
 	 */
 	public void testToStringWithFullPlane() throws AlreadyReservedException,
-	SeatOutOfBoundsException {
+			SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
 		seats.reserveAll("A1", "B1", "C1", "D1");
 		seats.reserveAll("A2", "B2", "C2", "D2");
@@ -36,7 +36,7 @@ public class AirplaneSeatsTest {
 	 * Tests that reserve() reserves a seat correctly.
 	 */
 	public void testReserve() throws AlreadyReservedException,
-			SeatOutOfBoundsException {
+	SeatOutOfBoundsException {
 		AirplaneSeats s = new AirplaneSeats(1, 1);
 		s.reserve("A1");
 		Assert.assertTrue(s.isReserved("A1"));
@@ -81,7 +81,7 @@ public class AirplaneSeatsTest {
 	 * Tests that isFullPlane() returns false if there are empty seats on the plane. 
 	 */
 	public void testIsPlaneFullReturnsFalse() throws AlreadyReservedException,
-			SeatOutOfBoundsException {
+	SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(2, 2);
 		seats.reserve("A1");
 		Assert.assertFalse(seats.isPlaneFull());
@@ -92,7 +92,7 @@ public class AirplaneSeatsTest {
 	 * Tests that isFullPlane() returns true if there are no empty seats on the plane. 
 	 */
 	public void testIsPlaneFullReturnsTrue() throws AlreadyReservedException,
-			SeatOutOfBoundsException {
+	SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(1, 1);
 		seats.reserve("A1");
 		Assert.assertTrue(seats.isPlaneFull());
@@ -102,7 +102,8 @@ public class AirplaneSeatsTest {
 	/**
 	 * Tests that reserveGroup() reserves the correct seats when called on an empty plane.
 	 */
-	public void testReserveGroupOnEmptyPlane() throws NotEnoughSeatsException {
+	public void testReserveGroupOnEmptyPlane() throws NotEnoughSeatsException,
+			AlreadyReservedException, SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(4, 4);
 		ArrayList<String> group = seats.reserveGroup(4);
 		ArrayList<String> group2 = new ArrayList<String>();
@@ -139,7 +140,8 @@ public class AirplaneSeatsTest {
 	 * Tests that reserveGroup() throws NotEnoughSeatsException if there are not enough 
 	 * seats available together for the group.
 	 */
-	public void testReserveGroupThrowsNotEnoughSeatsException() {
+	public void testReserveGroupThrowsNotEnoughSeatsException()
+			throws AlreadyReservedException, SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(1, 1);
 		try {
 			seats.reserveGroup(4);
