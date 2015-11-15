@@ -2,7 +2,6 @@ package kerstein.airline;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This class is part of an Airline Reservation system. It holds seats that are
@@ -25,6 +24,18 @@ public class AirplaneSeats {
 		this.columns = columns;
 		map = new HashMap<String, Boolean>();
 
+		char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+		StringBuilder builder = new StringBuilder();
+		for (int row = 0; row < rows; row++) {
+			for (int column = 0; column < columns; column++) {
+				builder.append(alphabet[column]);
+				builder.append(Integer.toString(row + 1));
+				map.put(builder.toString(), false);
+				builder.setLength(0);// reset the length of the string builder
+				// for the next row
+			}
+		}
+
 	}
 
 	/**
@@ -39,31 +50,14 @@ public class AirplaneSeats {
 	 */
 	public void reserve(String seatName) throws AlreadyReservedException,
 	SeatOutOfBoundsException {
-		boolean found = false;
-		boolean f = false;
-		String[] seats = seatName.split("");
-		for (int i = 1; i < columns; i++) {
-			char x = (char) i;
-			if (seats[1].charAt(0) == x) {
-				f = true;
-			}
-		}
-		for (int i = 0; i < rows; i++) {
-			for (char alphabet = 'A'; alphabet < rows; alphabet++) {
-				if (seats[0].charAt(0) == alphabet) {
-					found = true;
-				}
-			}
-		}
-		if (found == false && f == false) {
+		if (!map.containsKey(seatName)) {
 			throw new SeatOutOfBoundsException();
 		}
 
-		boolean filled = map.get(seatName);
-		if (filled == false) {
-			map.put(seatName, true);
-		} else {
+		if (map.get(seatName) == true) {
 			throw new AlreadyReservedException();
+		} else {
+			map.put(seatName, true);
 		}
 
 	}
@@ -114,21 +108,31 @@ public class AirplaneSeats {
 	 */
 	@Override
 	public String toString() {
+		char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 		StringBuilder builder = new StringBuilder();
-		for (Map.Entry<String, Boolean> entry : map.entrySet()) {
-			for (int i = 0; i < columns; i++) {
-				System.out.println(i + " ");
-				if (entry.getValue() == true) {
-					builder.append("#");
-				} else {
-					builder.append("o");
-
-				}
-
-			}
-			builder.append("\n");
+		StringBuilder builder2 = new StringBuilder();
+		builder2.append("  ");
+		for (int i = 0; i <= rows; i++) {
+			builder2.append(alphabet[i]);
 		}
-		return builder.toString();
+		builder2.append("\n");
+		for (int row = 0; row < rows; row++) {
+			builder2.append(row + 1);
+			builder2.append(" ");
+			for (int column = 0; column < columns; column++) {
+				builder.setLength(0);
+				builder.append(alphabet[column]);
+				builder.append(Integer.toString(row + 1));
+				if (map.get(builder.toString()) == true) {
+					builder2.append("#");
+				} else {
+					builder2.append("o");
+				}
+			}
+			builder2.append("\n");
+		}
+
+		return builder2.toString();
 	}
 
 	/**
@@ -145,29 +149,32 @@ public class AirplaneSeats {
 	public ArrayList<String> reserveGroup(int numberOfSeatsTogether)
 			throws NotEnoughSeatsException {
 		ArrayList<String> group = new ArrayList<String>();
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < columns; j++) {
-
-				for (Map.Entry<String, Boolean> entry : map.entrySet()) {
-					if (entry.getValue() == true) {
-						throw new NotEnoughSeatsException();
-					}
+		char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+		StringBuilder builder = new StringBuilder();
+		for (int row = 0; row < rows; row++) {
+			int count = 0;
+			for (int column = 0; column < columns; column++) {
+				builder.append(alphabet[column]);
+				builder.append(Integer.toString(row + 1));
+				if (map.get(builder.toString()) == false) {
+					group.add(builder.toString());
+					builder.setLength(0);
+					count++;
 				}
 			}
-		}
-		return null;
+			if (count == 4) {
+				return group;
+			}
+
+		}// close outer for loop
+		throw new NotEnoughSeatsException();
 	}
 
 	/**
 	 * @return true if the plane is full, otherwise false.
 	 */
 	public boolean isPlaneFull() {
-		int count = 0;
-		int size = rows * columns;
-		for (String key : map.keySet()) {
-			count++;
-		}
-		if (count <= size) {
+		if (map.containsValue(false)) {
 			return false;
 		} else {
 			return true;

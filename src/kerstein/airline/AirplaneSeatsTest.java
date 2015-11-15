@@ -1,5 +1,7 @@
 package kerstein.airline;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +22,7 @@ public class AirplaneSeatsTest {
 	 * Test the output of toString() on an full plane. Do not modify this method.
 	 */
 	public void testToStringWithFullPlane() throws AlreadyReservedException,
-			SeatOutOfBoundsException {
+	SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
 		seats.reserveAll("A1", "B1", "C1", "D1");
 		seats.reserveAll("A2", "B2", "C2", "D2");
@@ -35,8 +37,9 @@ public class AirplaneSeatsTest {
 	 */
 	public void testReserve() throws AlreadyReservedException,
 			SeatOutOfBoundsException {
-		AirplaneSeats s = new AirplaneSeats(4, 4);
-
+		AirplaneSeats s = new AirplaneSeats(1, 1);
+		s.reserve("A1");
+		Assert.assertTrue(s.isReserved("A1"));
 	}
 
 	@Test
@@ -65,7 +68,7 @@ public class AirplaneSeatsTest {
 			throws AlreadyReservedException {
 		AirplaneSeats seats = new AirplaneSeats(1, 1);
 		try {
-			seats.reserve("Z4");
+			seats.reserve("A2");
 			Assert.fail("Exception should have been thrown");
 		} catch (SeatOutOfBoundsException e) {
 
@@ -78,8 +81,8 @@ public class AirplaneSeatsTest {
 	 * Tests that isFullPlane() returns false if there are empty seats on the plane. 
 	 */
 	public void testIsPlaneFullReturnsFalse() throws AlreadyReservedException,
-	SeatOutOfBoundsException {
-		AirplaneSeats seats = new AirplaneSeats(1, 2);
+			SeatOutOfBoundsException {
+		AirplaneSeats seats = new AirplaneSeats(2, 2);
 		seats.reserve("A1");
 		Assert.assertFalse(seats.isPlaneFull());
 	}
@@ -89,7 +92,7 @@ public class AirplaneSeatsTest {
 	 * Tests that isFullPlane() returns true if there are no empty seats on the plane. 
 	 */
 	public void testIsPlaneFullReturnsTrue() throws AlreadyReservedException,
-	SeatOutOfBoundsException {
+			SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(1, 1);
 		seats.reserve("A1");
 		Assert.assertTrue(seats.isPlaneFull());
@@ -100,8 +103,15 @@ public class AirplaneSeatsTest {
 	 * Tests that reserveGroup() reserves the correct seats when called on an empty plane.
 	 */
 	public void testReserveGroupOnEmptyPlane() throws NotEnoughSeatsException {
-		AirplaneSeats seats = new AirplaneSeats(1, 4);
-		seats.reserveGroup(4);
+		AirplaneSeats seats = new AirplaneSeats(4, 4);
+		ArrayList<String> group = seats.reserveGroup(4);
+		ArrayList<String> group2 = new ArrayList<String>();
+		group2.add("A1");
+		group2.add("B2");
+		group2.add("C2");
+		group2.add("D2");
+		Assert.assertSame(group, group);
+
 	}
 
 	@Test
@@ -111,8 +121,17 @@ public class AirplaneSeatsTest {
 	 * calling reserveGroup(4) should return a list of elements ["A2", "B2", "C2", "D2"]
 	 */
 	public void testReserveGroupOnPartiallyFilledPlane()
-			throws NotEnoughSeatsException {
-		Assert.fail("Test not implemented");
+			throws NotEnoughSeatsException, AlreadyReservedException,
+			SeatOutOfBoundsException {
+		AirplaneSeats seats = new AirplaneSeats(3, 4);
+		ArrayList<String> group = seats.reserveGroup(4);
+		ArrayList<String> group2 = new ArrayList<String>();
+		seats.reserve("A1");
+		group2.add("A2");
+		group2.add("B2");
+		group2.add("C2");
+		group2.add("D2");
+		Assert.assertSame(group, group);
 	}
 
 	@Test
@@ -122,7 +141,11 @@ public class AirplaneSeatsTest {
 	 */
 	public void testReserveGroupThrowsNotEnoughSeatsException() {
 		AirplaneSeats seats = new AirplaneSeats(1, 1);
-		// seats.reserveGroup()
-		Assert.fail("Exception should have been thrown");
+		try {
+			seats.reserveGroup(4);
+			Assert.fail("Exception should have been thrown");
+		} catch (NotEnoughSeatsException e) {
+		}
+
 	}
 }
