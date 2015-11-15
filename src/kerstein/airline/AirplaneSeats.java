@@ -49,7 +49,7 @@ public class AirplaneSeats {
 	 *             constructor
 	 */
 	public void reserve(String seatName) throws AlreadyReservedException,
-	SeatOutOfBoundsException {
+			SeatOutOfBoundsException {
 		if (!map.containsKey(seatName)) {
 			throw new SeatOutOfBoundsException();
 		}
@@ -154,12 +154,15 @@ public class AirplaneSeats {
 		for (int row = 0; row < rows; row++) {
 			int count = 0;
 			for (int column = 0; column < columns; column++) {
+				builder.setLength(0);
 				builder.append(alphabet[column]);
 				builder.append(Integer.toString(row + 1));
 				if (map.get(builder.toString()) == false) {
 					group.add(builder.toString());
 					builder.setLength(0);
 					count++;
+				} else if (map.get(builder.toString()) == true) {
+					break;
 				}
 			}
 			if (count == 4) {

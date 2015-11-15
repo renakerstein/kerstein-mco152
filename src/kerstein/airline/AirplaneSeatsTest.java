@@ -107,10 +107,10 @@ public class AirplaneSeatsTest {
 		ArrayList<String> group = seats.reserveGroup(4);
 		ArrayList<String> group2 = new ArrayList<String>();
 		group2.add("A1");
-		group2.add("B2");
-		group2.add("C2");
-		group2.add("D2");
-		Assert.assertSame(group, group);
+		group2.add("B1");
+		group2.add("C1");
+		group2.add("D1");
+		Assert.assertEquals(group, group2);
 
 	}
 
@@ -124,14 +124,14 @@ public class AirplaneSeatsTest {
 			throws NotEnoughSeatsException, AlreadyReservedException,
 			SeatOutOfBoundsException {
 		AirplaneSeats seats = new AirplaneSeats(3, 4);
+		seats.reserve("A1");
 		ArrayList<String> group = seats.reserveGroup(4);
 		ArrayList<String> group2 = new ArrayList<String>();
-		seats.reserve("A1");
 		group2.add("A2");
 		group2.add("B2");
 		group2.add("C2");
 		group2.add("D2");
-		Assert.assertSame(group, group);
+		Assert.assertEquals(group, group2);
 	}
 
 	@Test
