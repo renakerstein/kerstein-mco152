@@ -159,4 +159,5 @@ public class ConnectFourGame extends JLabel {
 		}
 		return consecutiveNumbers;
 	}
+
 }

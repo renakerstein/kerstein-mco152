@@ -73,7 +73,7 @@ public class ConnectFourJFrame extends JFrame {
 						again = JOptionPane.showConfirmDialog(
 								container,
 								game.getColor()
-								+ " WINS!!! \nDo you want to play again?",
+										+ " WINS!!! \nDo you want to play again?",
 								"Connect four", JOptionPane.YES_NO_OPTION);
 						if (again == JOptionPane.YES_OPTION) {
 							for (int i = 0; i < slots.length; i++) {
@@ -88,7 +88,7 @@ public class ConnectFourJFrame extends JFrame {
 						} else {
 							JOptionPane.showMessageDialog(container,
 									"HAVE A GOOD DAY! \nTHANK YOU FOR PLAYING");
-							System.exit(0);
+							dispose();// close the window
 						}
 					} else if (won == false && game.isFull()) {
 						again = JOptionPane
@@ -110,7 +110,7 @@ public class ConnectFourJFrame extends JFrame {
 						} else {
 							JOptionPane.showMessageDialog(container,
 									"HAVE A GOOD DAY! \nTHANK YOU FOR PLAYING");
-							System.exit(0);
+							dispose(); // close the window
 						}
 					} else {
 						game.switchPlayer();
