@@ -67,8 +67,8 @@ public class ConnectFourGame extends JLabel {
 	}
 
 	public boolean isFull() {
-		for (int row = 0; row < grid.length; row++) {
-			for (int column = 0; column < grid[row].length; column++) {
+		for (int row = 0; row < maxRows; row++) {
+			for (int column = 0; column < maxColumns; column++) {
 				if (grid[row][column] == 0) {
 					return false;
 				}
