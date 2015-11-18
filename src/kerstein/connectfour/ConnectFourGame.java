@@ -78,7 +78,7 @@ public class ConnectFourGame extends JLabel {
 	}
 
 	public boolean gameStatus() {
-		boolean consecutiveNumbers = false;
+		boolean winner = false;
 		for (int row = 0; row < 6; row++) {
 			for (int column = 0; column < 4; column++) {
 				int counterColumn = column; // to prevent the column from
@@ -89,8 +89,8 @@ public class ConnectFourGame extends JLabel {
 						&& grid[row][++counterColumn] == currentPlayer
 						&& grid[row][++counterColumn] == currentPlayer
 						&& grid[row][++counterColumn] == currentPlayer) {
-					consecutiveNumbers = true;
-					return consecutiveNumbers;
+					winner = true;
+					return winner;
 
 				}
 			}
@@ -105,8 +105,8 @@ public class ConnectFourGame extends JLabel {
 						&& grid[++counterRow][column] == currentPlayer
 						&& grid[++counterRow][column] == currentPlayer
 						&& grid[++counterRow][column] == currentPlayer) {
-					consecutiveNumbers = true;
-					return consecutiveNumbers;
+					winner = true;
+					return winner;
 
 				}
 
@@ -127,8 +127,8 @@ public class ConnectFourGame extends JLabel {
 						&& grid[++counterRow][++counterColumn] == currentPlayer
 						&& grid[++counterRow][++counterColumn] == currentPlayer
 						&& grid[++counterRow][++counterColumn] == currentPlayer) {
-					consecutiveNumbers = true;
-					return consecutiveNumbers;
+					winner = true;
+					return winner;
 				}
 			}
 		}
@@ -146,8 +146,8 @@ public class ConnectFourGame extends JLabel {
 						&& grid[--counterRow][++counterColumn] == currentPlayer
 						&& grid[--counterRow][++counterColumn] == currentPlayer
 						&& grid[--counterRow][++counterColumn] == currentPlayer) {
-					consecutiveNumbers = true;
-					return consecutiveNumbers;
+					winner = true;
+					return winner;
 				}
 				// if consecutiveNumbers is not found to be true in any of the
 				// if statements it will remain
@@ -157,7 +157,7 @@ public class ConnectFourGame extends JLabel {
 
 			}
 		}
-		return consecutiveNumbers;
+		return winner;
 	}
 
 }
