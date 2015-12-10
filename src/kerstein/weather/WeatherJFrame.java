@@ -38,6 +38,7 @@ public class WeatherJFrame extends JFrame {
 
 		Container container = getContentPane();
 		setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+		container.setBackground(Color.CYAN);
 
 		Font font = new Font("Arial", Font.BOLD, 25);
 
@@ -87,50 +88,60 @@ public class WeatherJFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// instantiate AccessWeather class
-				current = new AccessWeather();
-
-				CurrentWeather cWeather = null;
-				try {
-					// call method in AccessWeatherClass to get CurrentWeather
-					cWeather = current.getCurrentWeather(zipText.getText());
-
-					// access the main
-					Main main = cWeather.getMain();
-
-					// get the temperature
-					temp.setText("\n" + String.valueOf(main.getTemp())
-							+ " Degrees F");
-
-					humidity.setText("Humidity- "
-							+ String.valueOf(main.getHumidity()));
-				} catch (IOException e) {
-				}
-
-				// access the array of Weather
-				Weather[] w = cWeather.getWeather();
-				// get description
-				description.setText(w[0].getDescription());
-
-				// get the image
-				StringBuilder builder = new StringBuilder();
-				builder.append("http://openweathermap.org/img/w/");
-				builder.append(w[0].getIcon());
-				builder.append(".png");
-
-				try {
-					URL url = new URL(builder.toString());
-
-					BufferedImage img = ImageIO.read(url);
-
-					image.setIcon(new ImageIcon(new ImageIcon(img).getImage()
-							.getScaledInstance(125, 125, Image.SCALE_DEFAULT)));
-				} catch (IOException e) {
-
-				}
+				requestWeather();
 			}
 
 		});
+	}
+
+	private void requestWeather() {
+		Weather[] w = requestWeatherData();
+		requestWeatherImage(w);
+	}
+
+	private Weather[] requestWeatherData() {
+		// instantiate AccessWeather class
+		current = new AccessWeather();
+
+		CurrentWeather cWeather = null;
+		try {
+			// call method in AccessWeatherClass to get CurrentWeather
+			cWeather = current.getCurrentWeather(zipText.getText());
+
+			// access the main
+			Main main = cWeather.getMain();
+
+			// get the temperature
+			temp.setText("\n" + String.valueOf(main.getTemp()) + " Degrees F");
+
+			humidity.setText("Humidity- " + String.valueOf(main.getHumidity()));
+		} catch (IOException e) {
+		}
+
+		// access the array of Weather
+		Weather[] w = cWeather.getWeather();
+		// get description
+		description.setText(w[0].getDescription());
+		return w;
+	}
+
+	private void requestWeatherImage(Weather[] w) {
+		// get the image
+		StringBuilder builder = new StringBuilder();
+		builder.append("http://openweathermap.org/img/w/");
+		builder.append(w[0].getIcon());
+		builder.append(".png");
+
+		try {
+			URL url = new URL(builder.toString());
+
+			BufferedImage img = ImageIO.read(url);
+
+			image.setIcon(new ImageIcon(new ImageIcon(img).getImage()
+					.getScaledInstance(125, 125, Image.SCALE_DEFAULT)));
+		} catch (IOException e) {
+
+		}
 	}
 
 	public static void main(String[] args) {
