@@ -8,7 +8,7 @@ public class ContactThread extends Thread {
 
 	private JList<String> list;
 	private GetConnection connection;
-	private Contacts[] contacts;
+	private Contact[] contacts;
 
 	public ContactThread(JList<String> list) {
 		this.list = list;
@@ -26,15 +26,15 @@ public class ContactThread extends Thread {
 
 	}
 
-	public Contacts[] getContacts() {
+	public Contact[] getContacts() {
 		return contacts;
 	}
 
-	public void addData(Contacts[] contacts) {
+	public void addData(Contact[] contacts) {
 		String[] contactArray = new String[contacts.length];
 
 		int j = 0;
-		for (Contacts c : contacts) {
+		for (Contact c : contacts) {
 			String name = c.getName();
 
 			contactArray[j] = name;

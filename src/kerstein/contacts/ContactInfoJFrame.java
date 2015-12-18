@@ -13,7 +13,7 @@ public class ContactInfoJFrame extends JFrame {
 	private JLabel phone;
 	private JLabel email;
 
-	public ContactInfoJFrame(Contacts[] contacts, int index) {
+	public ContactInfoJFrame(Contact[] contacts, int index) {
 		setTitle("CONTACT'S INFO");
 		setSize(800, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +36,8 @@ public class ContactInfoJFrame extends JFrame {
 		setText(contacts, index);
 	}
 
-	public void setText(Contacts[] contacts, int index) {
+	public void setText(Contact[] contacts, int index) {
+
 		phone.setText(contacts[index].getPhone());
 		email.setText(contacts[index].getEmail());
 	}

@@ -40,7 +40,7 @@ public class ContactNameJFrame extends JFrame {
 
 					// Double-click detected
 					int index = list.locationToIndex(evt.getPoint());
-					Contacts[] contacts = thread.getContacts();
+					Contact[] contacts = thread.getContacts();
 					ContactInfoJFrame frame = new ContactInfoJFrame(contacts,
 							index);
 					frame.setVisible(true);

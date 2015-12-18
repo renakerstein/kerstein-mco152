@@ -11,13 +11,13 @@ import com.google.gson.Gson;
 
 public class GetConnection {
 
-	private Contacts[] contacts;
+	private Contact[] contacts;
 
 	public GetConnection() {
 
 	}
 
-	public Contacts[] getJSONConnection() throws IOException {
+	public Contact[] getJSONConnection() throws IOException {
 		String contactURL = "http://jsonplaceholder.typicode.com/users";
 
 		// get Connection
@@ -30,14 +30,14 @@ public class GetConnection {
 
 		Gson gson = new Gson();
 
-		this.contacts = new Gson().fromJson(br, Contacts[].class);
+		this.contacts = new Gson().fromJson(br, Contact[].class);
 		br.close();
 
 		return contacts;
 
 	}
 
-	public Contacts[] getContacts() {
+	public Contact[] getContacts() {
 		return contacts;
 	}
 }
