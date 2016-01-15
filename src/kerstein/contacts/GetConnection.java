@@ -30,7 +30,7 @@ public class GetConnection {
 
 		Gson gson = new Gson();
 
-		this.contacts = new Gson().fromJson(br, Contact[].class);
+		this.contacts = gson.fromJson(br, Contact[].class);
 		br.close();
 
 		return contacts;

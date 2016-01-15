@@ -16,7 +16,7 @@ public class ContactInfoJFrame extends JFrame {
 	public ContactInfoJFrame(Contact[] contacts, int index) {
 		setTitle("CONTACT'S INFO");
 		setSize(800, 600);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		Container container = getContentPane();
 		setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
